@@ -160,6 +160,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<ScanResul
     return nextResponse;
 
   } catch (error) {
+    console.error('Scan GitHub Error:', error);
     if (tempDir) {
       await safeRemoveDir(tempDir);
     }

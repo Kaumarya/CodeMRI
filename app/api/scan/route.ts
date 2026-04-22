@@ -139,6 +139,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<ScanResul
     return response;
 
   } catch (error) {
+    console.error('Scan Error:', error);
     return NextResponse.json(
       { error: 'Internal server error during scan' },
       { status: 500 }
