@@ -672,7 +672,7 @@ export function calculateRiskScore(
   // Large files detection (>500 lines)
   const largeFileCount = scanResult.files.filter(file => {
     try {
-      const content = require('fs').readFileSync(file, 'utf-8');
+      const content = readFileSync(file, 'utf-8');
       return content.split('\n').length > 500;
     } catch {
       return false;

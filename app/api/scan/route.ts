@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import { readFileSync } from 'fs';
 import path from 'path';
+import os from 'os';
 import { randomUUID } from 'crypto';
 import AdmZip from 'adm-zip';
 import { scanCodebase, safeRemoveDir, calculateRiskScore, extractImports, detectRisks } from '../../../lib/nuclearScanner';
@@ -50,7 +51,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<ScanResul
     }
 
     // Create temporary directory
-    tempDir = path.join(process.cwd(), 'temp', randomUUID());
+    tempDir = path.join(os.tmpdir(), 'codemri-' + randomUUID());
     await fs.mkdir(tempDir, { recursive: true });
 
     // Save uploaded file
